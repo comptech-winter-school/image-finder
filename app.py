@@ -1,6 +1,14 @@
-from flask import Flask, jsonify, request
+import os.path
+from flask import Flask, jsonify, request, render_template
+from werkzeug.utils import secure_filename
+from zipfile import ZipFile
 
 app = Flask(__name__)
+
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 @app.route('/')
@@ -21,6 +29,30 @@ def search_text():
             "link4": "https://images.pexels.com/photos/10849829/pexels-photo-10849829.jpeg",
             "link5": "https://images.pexels.com/photos/10050311/pexels-photo-10050311.jpeg"
         }})
+
+
+@app.route('/api/v1/uploader', methods=['GET', 'POST'])
+def uploader():
+    if request.method == 'POST':
+        file = request.files['file']
+        filename = file.filename
+        extension = os.path.splitext(filename)[1]
+        if file and allowed_file(filename):
+            if extension in ['png', 'jpg', 'jpeg', 'gif']:
+                filename = secure_filename(file.filename)
+                # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                file.save('\\temp', filename)
+            elif extension == 'zip':
+                filename = secure_filename(file.filename)
+                with ZipFile(filename) as zf:
+                    for file in zf.namelist():
+                        filename = secure_filename(file.filename)
+                        extension = os.path.splitext(filename)[1]
+                        if extension in ['png', 'jpg', 'jpeg', 'gif']:
+                            filename = secure_filename(file.filename)
+                            file.save('\\temp', filename)
+            return "File saved"
+
 
 
 if __name__ == '__main__':
