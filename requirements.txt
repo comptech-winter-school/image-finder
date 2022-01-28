@@ -1,0 +1,6 @@
+torchvision
+torchaudio
+pytorch==1.10.2
+ruclip==0.0.1
+pandas
+numpy
