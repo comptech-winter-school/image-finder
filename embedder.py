@@ -10,14 +10,14 @@ class Embedder(abc.ABC):
     def encode_text(self, text):
         pass
 
-   @abc.abstractmethod
+    @abc.abstractmethod
     def encode_img(self, img):
         pass
 
-   @abc.abstractmethod
+    @abc.abstractmethod
     def encode_imgs(self, imgs):
         pass
 
-   @abc.abstractmethod
-   def cos(a, b):
+    @abc.abstractmethod
+    def cos(a, b):
        pass
