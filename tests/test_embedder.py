@@ -1,12 +1,27 @@
 import pytest
 import numpy as np
+from PIL import Image
 
 from embedder import EmbedderRuCLIP
 
 def test_encode_text():
     embedder = EmbedderRuCLIP()
     text = "На картинке котик"
-    assert embedder.encode_text(text)
+    assert embedder.encode_text(text).shape == (1, 512)
+    assert np.isclose(np.linalg.norm(embedder.encode_text(text)), 1)
+
+def test_encode_imgs():
+    embedder = EmbedderRuCLIP()
+    N = 1
+    pil_imgs = [Image.fromarray(
+        (255 * np.random.randn(256, 256, 3)).astype(np.uint8)) for _ in range(N)]
+    assert embedder.encode_imgs(pil_imgs).shape == (N, 512)
+
+    N = 100
+    pil_imgs = [Image.fromarray(
+        (255 * np.random.randn(256, 256, 3)).astype(np.uint8)) for _ in range(N)]
+    assert embedder.encode_imgs(pil_imgs).shape == (N, 512)
+
 
 def test_cos():
     embedder = EmbedderRuCLIP()

@@ -3,12 +3,15 @@ Created on 2022 Jan 28 14:09
 
 @author: keller
 """
-import numpy as np
-import torch
-from numbers import Number
-import ruclip
 import abc
+
+import torch
+import ruclip
+import numpy as np
+
 from PIL import Image
+
+from numbers import Number
 from typing import List
 
 class Embedder(abc.ABC):
@@ -61,23 +64,3 @@ class EmbedderRuCLIP(Embedder):
         with torch.no_grad():
             img_latents = self.predictor.get_image_latents(pil_imgs).detach().numpy()
         return img_latents
-
-
-### Tests
-embedder = EmbedderRuCLIP()
-
-text_emb = np.array([0, 1])
-img_emb = np.array([0, 1])
-print(embedder.cos(text_emb, img_emb))
-
-text_emb = np.array([0, 1])
-img_emb = np.array([1, 0])
-print(embedder.cos(text_emb, img_emb))
-
-text_emb = np.array([0, 1, 0, 1, 3, 5, 6, 1])
-img_emb = np.array([7, 3, 5, 4, 2, 5, 9, 2])
-print(embedder.cos(text_emb, img_emb))
-
-text_emb = np.array([0.1, 0.2, 0.3])
-img_emb = np.array([0.3, 0.2, 0.3])
-print(embedder.cos(text_emb, img_emb))
