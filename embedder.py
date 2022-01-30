@@ -23,14 +23,14 @@ class Embedder(abc.ABC):
     def encode_imgs(self, imgs):
         pass
 
-    def cos(self, text_emb: np.ndarray, img_emb: np.ndarray) -> Number:
+    def cos(self, emb1: np.ndarray, emb2: np.ndarray) -> Number:
         """
-        Returns cos similarity between text_emb and img_emb
-        :param text_emb: 1D tensor
-        :param img_emb: 1D tensor
+        Returns cos similarity between two embeddings
+        :param emb1: 1D tensor
+        :param emb2: 1D tensor
         :return: cos similarity (Number)
         """
-        return np.dot(text_emb, img_emb)
+        return np.dot(emb1, emb2) / np.linalg.norm(emb1, emb2)
 
 
 class EmbedderRuCLIP(Embedder):
