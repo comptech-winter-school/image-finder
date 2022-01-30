@@ -45,6 +45,13 @@ class EmbedderRuCLIP(Embedder):
         clip, processor = ruclip.load(ruclip_model_name)
         self.predictor = ruclip.Predictor(clip, processor, device, bs=8, templates=templates)
 
+    def _tonumpy(self, tensor: torch.Tensor) -> np.ndarray:
+        """
+        Detaches tensor from GPU and converts it to numpy array
+        :return: numpy array
+        """
+        return tensor.cpu().detach().numpy()
+
     def encode_text(self, text: str) -> np.ndarray:
         """
         Returns text latent of the text input
@@ -54,7 +61,7 @@ class EmbedderRuCLIP(Embedder):
         classes = [text, ]
         with torch.no_grad():
             text_latent = self.predictor.get_text_latents(classes)
-        return text_latent.cpu().detach().numpy()
+        return self._tonumpy(text_latent)
 
     def encode_imgs(self, pil_imgs: List[Image.Image]) -> np.ndarray:
         """
@@ -63,6 +70,6 @@ class EmbedderRuCLIP(Embedder):
         :return img_latents: numpy array of img latents
         """
         with torch.no_grad():
-            img_latents = self.predictor.get_image_latents(pil_imgs).cpu().detach().numpy()
-        return img_latents
+            img_latents = self.predictor.get_image_latents(pil_imgs)
+        return self._tonumpy(img_latents)
 
