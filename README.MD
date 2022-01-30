@@ -1,2 +1,16 @@
-Image Finder
-CompTech2022
+# Image Finder CompTech2022
+
+## Команда
+
+- Разработчики: Анна, Василий, Вадим, Кирилл, Александр, Максим, Влад
+
+- Технический писатель: Антон
+
+- Капитан: Дмитрий 
+
+- Кураторы: Амир, Владимир
+
+
+## Some screenshots of Streamlit main page
+![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/streamlit_1.png)
+![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/streamlit_2.png)
