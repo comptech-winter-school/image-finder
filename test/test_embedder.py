@@ -1,8 +1,10 @@
-import pytest
+import unittest
 import numpy as np
 from PIL import Image
+from scipy.spatial import distance
 
 from embedder import EmbedderRuCLIP
+
 
 def test_encode_text():
     embedder = EmbedderRuCLIP()
@@ -26,17 +28,21 @@ def test_encode_imgs():
 def test_cos():
     embedder = EmbedderRuCLIP()
 
-    text_emb = np.array([0, 1])
-    img_emb = np.array([0, 1])
-    assert embedder.cos(text_emb, img_emb) == 1
+    emb1 = np.array([0, 1])
+    emb2 = np.array([0, 1])
+    assert np.isclose(embedder.cos(emb1, emb2), (1 - distance.cosine(emb1, emb2)))
 
-    text_emb = np.array([0, 1, 0, 1, 3, 5, 6, 1])
-    img_emb = np.array([7, 3, 5, 4, 2, 5, 9, 2])
-    assert embedder.cos(text_emb, img_emb) == 94
+    emb1 = np.array(np.random.rand(1, 10))
+    emb2 = np.array(np.random.rand(1, 10))
+    assert np.isclose(embedder.cos(emb1, emb2), (1 - distance.cosine(emb1, emb2)))
 
-    text_emb = np.array([0.1, 0.2, 0.3])
-    img_emb = np.array([0.3, 0.2, 0.3])
-    assert embedder.cos(text_emb, img_emb) == 0.16
+    emb1 = np.array(np.random.rand(1, 512))
+    emb2 = np.array(np.random.rand(1, 512))
+    assert np.isclose(embedder.cos(emb1, emb2), (1 - distance.cosine(emb1, emb2)))
+
+    emb1 = np.array(np.random.rand(512))
+    emb2 = np.array(np.random.rand(512))
+    assert np.isclose(embedder.cos(emb1, emb2), (1 - distance.cosine(emb1, emb2)))
 
 
 

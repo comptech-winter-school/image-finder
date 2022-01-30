@@ -30,7 +30,8 @@ class Embedder(abc.ABC):
         :param emb2: 1D tensor
         :return: cos similarity (Number)
         """
-        return np.dot(emb1, emb2) / np.linalg.norm(emb1, emb2)
+        emb1, emb2 = emb1.squeeze(), emb2.squeeze() # convert (1, N) arrays to (N,)
+        return np.dot(emb1, emb2) / (np.linalg.norm(emb1) * np.linalg.norm(emb2))
 
 
 class EmbedderRuCLIP(Embedder):
@@ -64,3 +65,4 @@ class EmbedderRuCLIP(Embedder):
         with torch.no_grad():
             img_latents = self.predictor.get_image_latents(pil_imgs).cpu().detach().numpy()
         return img_latents
+
