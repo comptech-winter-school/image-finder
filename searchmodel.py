@@ -3,6 +3,7 @@ Created on 2022 Jan 30 10:14
 
 @author: keller
 """
+import glob
 
 
 class SearchModel():
@@ -11,7 +12,8 @@ class SearchModel():
         self.indexer = indexer
 
     def load_imgs(self, path):
-        pass
+        imgs = glob.glob(f'{path}/*')
+        print(imgs)
 
     def get_embeddings(self):
         pass
@@ -28,3 +30,6 @@ class SearchModel():
     def load(self):
         pass
 
+
+sm = SearchModel(None, None)
+sm.load_imgs('assets/pics')
