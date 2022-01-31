@@ -1,5 +1,7 @@
 import unittest
 
+from PIL import Image
+
 from searchmodel import SearchModel
 
 class TestSearchModel(unittest.TestCase):
@@ -7,7 +9,9 @@ class TestSearchModel(unittest.TestCase):
         self.sm = SearchModel(None, None)
 
     def test_load_imgs(self):
-        self.sm.load_imgs('assets/pics')
+        pil_imgs = self.sm.load_imgs('../assets/test_pics')
+        self.assertIsInstance(pil_imgs, list)
+        self.assertIsInstance(pil_imgs[0], Image.Image)
 
 
 if __name__ == '__main__':
