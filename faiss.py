@@ -23,13 +23,14 @@ class Indexer(abc.ABC):
   @abc.abstractmethod
   def find(self, query, topn): 
     pass
-
+  
+  @abc.abstractmethod
   def save(self,index):
-    faiss.write_index(self.index, "flat.index")
+    pass
     
-
+  @abc.abstractmethod
   def load(self, file):
-    self.index = faiss.read_index("file")
+    pass
 
 
 
@@ -50,5 +51,12 @@ class FaissIndexer(Indexer):
   def find(self, query, topn):  # D - distances; I - indices; query - test data; topn - the n nearest vectors
     D, I = self.index.search(query, topn) 
     return D, I
+  
+  def save(self,index):
+    faiss.write_index(self.index, "flat.index")
+    
+
+  def load(self, file):
+    self.index = faiss.read_index("file")
 
   
