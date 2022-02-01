@@ -9,14 +9,16 @@ import numpy as np
 from PIL import Image
 from typing import List
 
-import matplotlib.pyplot as plt
+from dummyindexer import DummyIndexer
+from embedder import EmbedderRuCLIP
 
 
 class SearchModel():
     def __init__(self, embedder, indexer):
         self.embedder = embedder
         self.indexer = indexer
-        self.img_path = []
+        self.indexed_imgs_path = [] # array with indexed embeddings
+        self.imgs_path = None       # array for temp embeddings storage
 
     def load_imgs(self, path: str) -> List[Image.Image]:
         """
@@ -24,8 +26,8 @@ class SearchModel():
         :param path:
         :return:
         """
-        self.path_list.extend(glob.glob(f'{path}/*'))
-        pil_imgs = [Image.open(img) for img in self.path_list]
+        self.imgs_path = glob.glob(f'{path}/*')
+        pil_imgs = [Image.open(img) for img in self.imgs_path]
         return pil_imgs
 
     def load_img_urls(self):
@@ -41,6 +43,7 @@ class SearchModel():
         :param pil_imgs:
         :return:
         """
+        self.indexed_imgs_path.extend(self.imgs_path)
         img_embs = self.embedder.encode_imgs(pil_imgs)
         self.indexer.add(img_embs)
 
@@ -52,5 +55,5 @@ class SearchModel():
         :return:
         """
         distances, indices = self.indexer.find(emb, k)
-        return distances, indices
+        return distances, np.array(self.indexed_imgs_path)[indices]
 
