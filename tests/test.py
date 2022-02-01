@@ -50,8 +50,9 @@ class TestFaissIndexer(unittest.TestCase):
   def test_train_command(self):
     self.indexer.train(self.data_train)
     self.indexer.add(self.data_train)
-    self.assertTrue((self.indexer.find(self.data_test, 5)[0] == np.array([[0.9304702 , 0.9304702 , 0.9304702 , 0.9304702 , 0.9304702 ],
+    true_value = np.array([[0.9304702 , 0.9304702 , 0.9304702 , 0.9304702 , 0.9304702 ],
        [0.21434802, 0.21434802, 0.21434802, 0.21434802, 0.21434802],
        [1.1376785 , 1.1376785 , 1.1376785 , 1.1376785 , 1.1376785 ],
        [0.9807172 , 0.9807172 , 0.9807172 , 0.9807172 , 0.9807172 ],
-       [0.8098495 , 0.8098495 , 0.8098495 , 0.8098495 , 0.8098495 ]], dtype = 'float32')).all())
+       [0.8098495 , 0.8098495 , 0.8098495 , 0.8098495 , 0.8098495 ]], dtype = 'float32')
+    self.assertTrue((self.indexer.find(self.data_test, 5)[0] == true_value).all())
