@@ -8,10 +8,6 @@ import abc
 class Indexer(abc.ABC):
 
   @abc.abstractmethod
-  def __init__(self, dim, param, nprobe):
-    pass
-
-  @abc.abstractmethod
   def add(self, vs):
     pass
   
