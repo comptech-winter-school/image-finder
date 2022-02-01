@@ -16,6 +16,7 @@ class SearchModel():
     def __init__(self, embedder, indexer):
         self.embedder = embedder
         self.indexer = indexer
+        self.img_path = []
 
     def load_imgs(self, path: str) -> List[Image.Image]:
         """
@@ -23,13 +24,13 @@ class SearchModel():
         :param path:
         :return:
         """
-        imgs = glob.glob(f'{path}/*')
-        pil_imgs = [Image.open(img) for img in imgs]
+        self.path_list.extend(glob.glob(f'{path}/*'))
+        pil_imgs = [Image.open(img) for img in self.path_list]
         return pil_imgs
 
     def load_img_urls(self):
         """
-        In case we want to load imgs from a list of url
+        In case we want to load imgs from a list of urls
         :return:
         """
         pass
@@ -45,7 +46,7 @@ class SearchModel():
 
     def get_k_imgs(self, emb: np.ndarray, k: int):
         """
-        Returns k indices of nearest embeddings and respective distances for a given embedding emb
+        Returns k indices of nearest image embeddings and respective distances for a given embedding emb
         :param emb:
         :param k:
         :return:
