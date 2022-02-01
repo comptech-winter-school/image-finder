@@ -4,10 +4,10 @@ Created on 2022 Jan 31 18:38
 @author: keller
 """
 import numpy as np
-# from faiss import Indexer
 
+from faiss import Indexer
 
-class DummyIndexer():
+class DummyIndexer(Indexer):
     def __init__(self):
         """
         Creates an empty index object
