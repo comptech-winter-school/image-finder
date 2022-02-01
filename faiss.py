@@ -11,7 +11,6 @@ class Indexer(abc.ABC):
   def __init__(self, dim, param, nprobe):
     pass
 
- 
   @abc.abstractmethod
   def add(self, vs):
     pass
@@ -41,7 +40,6 @@ class FaissIndexer(Indexer):
     self.dim = dim #dimention of vectors
     self.index.nprobe = nprobe #how many centroids we should pass
   
-  
   def add(self, vs): # add vectors, which we used for train
     self.index.add(vs)
   
@@ -54,8 +52,7 @@ class FaissIndexer(Indexer):
   
   def save(self,index):
     faiss.write_index(self.index, "flat.index")
-    
-
+   
   def load(self, file):
     self.index = faiss.read_index("file")
 
