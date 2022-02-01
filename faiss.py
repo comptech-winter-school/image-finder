@@ -6,9 +6,9 @@ class FaissIndexer:
   
   @abc.abstractmethod
   def __init__(self, dim, param, nprobe=5):
-    self.index = faiss.index_factory(dim, param)
-    self.dim = dim
-    self.index.nprobe = nprobe
+    self.index = faiss.index_factory(dim, param) # index creating, for more information: https://github.com/facebookresearch/faiss/wiki/The-index-factory
+    self.dim = dim #dimention of vectors
+    self.index.nprobe = nprobe #how many centroids we should pass
   
   
   def add(self, vs):
