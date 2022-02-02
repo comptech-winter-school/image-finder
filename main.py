@@ -7,7 +7,7 @@ st.set_page_config(page_title="Image Finder",
                    page_icon='⚙',
                    layout="centered",
                    initial_sidebar_state="collapsed",
-                   menu_items={'About': "# This is a header. This is an *extremely* cool app!"})
+                   menu_items=None)
 
 with st.expander("About"):
     st.text("""
