@@ -35,7 +35,7 @@ def function_images():
             df = df.rename(columns={0: "Image", 1: "Cosine distance"})
 
     if count == 0:
-        st.info(f"No images for {threshold} or above cosine distance")
+        st.info(f"No images for {threshold} or above cosine distance, %")
     else:
         for _, i in enumerate(input_format.items(), 1):
             with col1:
