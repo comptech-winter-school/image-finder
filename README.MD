@@ -12,5 +12,5 @@
 
 
 ## Some screenshots of Streamlit main page
-![](https://github.com/comptech-winter-school/image-finder/blob/streamlit/streamlet_1.png)
-![](https://github.com/comptech-winter-school/image-finder/blob/streamlit/streamlet_2.png)
+![](https://github.com/comptech-winter-school/image-finder/blob/streamlit/assets/streamlit_1.png)
+![](https://github.com/comptech-winter-school/image-finder/blob/streamlit/assets/streamlit_2.png)
