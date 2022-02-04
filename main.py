@@ -98,7 +98,6 @@ if st.button('Process'):
     indexer_name = dict_indexer.get(indexer)
     if option == 'Text query' and text:
         st.write(f"Output images for text query: {text}")
-        #function_images()
         general_model = None
         
         if re.findall(r'[а-яА-Я0-9]', text):
