@@ -49,10 +49,7 @@ class SearchModel():
         """
         pass
 
-    def add_photo_path(self, name):
-        return f'{self.images_dir}/{name}.png'
-
-    def save_embs(self) -> None:
+    def save_embs(self, batch_size=512) -> None:
         """
         Extracts image embeddings from embedder and adds them to indexer
         :param pil_imgs:
@@ -64,9 +61,7 @@ class SearchModel():
           os.remove(str(self.features_path) + '/features.npy')
           self.imgs_path = list(Path(self.images_dir).glob("*.*"))
         
-        if(len(self.imgs_path) >= 512):
-          batch_size = 512
-        else:
+        if not len(self.imgs_path) >= 512:
           batch_size = len(self.imgs_path)
 
         # Compute how many batches are needed
@@ -91,7 +86,7 @@ class SearchModel():
               np.save(batch_features_path, batch_features)
 
               # Save the photo IDs to a CSV file
-              photo_ids = [photo_file.name.split(".")[0] for photo_file in batch_files]
+              photo_ids = [photo_file for photo_file in batch_files]
               photo_ids_data = pd.DataFrame(photo_ids, columns=['photo_id'])
               photo_ids_data.to_csv(batch_ids_path, index=False)
             except:
@@ -107,7 +102,6 @@ class SearchModel():
 
         # Load all the photo IDs
         photo_ids = pd.concat([pd.read_csv(ids_file) for ids_file in sorted(self.features_path.glob("*.csv"))])
-        photo_ids = photo_ids["photo_id"].apply(self.add_photo_path)
         photo_ids.to_csv(self.features_path / "photo_ids.csv", index=False)
         
         for file in glob.glob('{}/0*.*'.format(self.features_path)):
