@@ -75,7 +75,7 @@ indexer = st.sidebar.selectbox(
     ("Variant1", "Variant2")
 )
 
-dict_indexer = {'Variant1':'stl10', 'Variant2':'film'}
+dict_indexer = {'Variant1':'trip', 'Variant2':'film'}
 
 st.title('Project')
 st.caption(f"Current indexer: {indexer}")
@@ -102,10 +102,10 @@ if st.button('Process'):
         
         if re.findall(r'[а-яА-Я0-9]', text):
             general_model = ruclip_model
-            general_model.load_imgs(f"/content/{indexer_name}/train_images",'RuCLIP')
+            general_model.load_imgs(f"/home/comptech/indexes/{indexer_name}/images",'RuCLIP')
         elif re.findall(r'[a-zA-Z0-9]', text):
             general_model = clip_model
-            general_model.load_imgs(f"/content/{indexer_name}/train_images",'CLIP')
+            general_model.load_imgs(f"/home/comptech/indexes/{indexer_name}/images",'CLIP')
         else:
             st.info(f"Error in query: {text}")
         general_model.indexer.load(str(general_model.features_path) + '/features.npy')
@@ -119,14 +119,14 @@ if st.button('Process'):
         function_images(input_format)
         
     elif option == 'Image' and file is not None:
-        clip_model.load_imgs(f"/content/{indexer_name}/train_images",'CLIP')
-        clip_model.indexer.load(str(clip_model.features_path) + '/features.npy')
+        ruclip_model.load_imgs(f"/home/comptech/indexes/{indexer_name}/images",'RuCLIP')
+        ruclip_model.indexer.load(str(ruclip_model.features_path) + '/features.npy')
         image = Image.open(file)
-        query = clip_model.embedder.encode_imgs([image])
+        query = ruclip_model.embedder.encode_imgs([image])
         st.image(image, caption=file.name)
         st.write(f"Output images for current input image: {file.name}")
         
-        input_data = clip_model.get_k_imgs(query, values)
+        input_data = ruclip_model.get_k_imgs(query, values)
         input_format = {}
         
         for i,j in zip(input_data[0], input_data[1]):
