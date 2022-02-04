@@ -6,7 +6,7 @@ import pandas as pd
 st.set_page_config(page_title="Image Finder",
                    page_icon='⚙',
                    layout="centered",
-                   initial_sidebar_state="collapsed",
+                   initial_sidebar_state="expanded",
                    menu_items=None)
 
 with st.expander("About"):
@@ -26,11 +26,11 @@ def function_images():
 
     col1, col2 = st.columns([1, 1])
     count = 0
-    for i, j in zip(input_format.keys(), input_format.values()):
-        if j >= threshold / 100:
+    for i in input_format.items():
+        if i[1] >= threshold / 100:
             count += 1
             df = pd.DataFrame()
-            data.append([i.split('/')[len(i.split('/'))-1], j])
+            data.append([i[0].split('/')[len(i[0].split('/'))-1], i[1]])
             df = df.append(data)
             df = df.rename(columns={0: "Image", 1: "Cosine distance"})
 
@@ -79,4 +79,4 @@ if st.button('Process'):
         st.write(f"Output images for current input image: {file.name}")
         function_images()
     else:
-        st.write("Error")
+        st.info("Error")
