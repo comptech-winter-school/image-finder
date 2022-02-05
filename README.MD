@@ -69,7 +69,7 @@ This project was tested on python 3.7
 * Math - module that provides access to some popular mathematical functions and constants.
 * abc - module that helps design abstract entities.
 
-## Some screenshots of Streamlit main page
+## Some screenshots of main page
 ![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/streamlit_1.png)
 ![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/streamlit_2.png)
 
