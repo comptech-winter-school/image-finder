@@ -14,6 +14,12 @@ This product is aimed at all users.
 
 [Demonstration site](http://84.201.160.26:8503/)
 
+## System operation
+
+* Image search;  
+* Search by text query (Russian/English); 
+* Video search. 
+
 ## Structure
 * 	`colabs` — directory with research experiments in colab notebooks;  
 *  `test` – directory with tests;
@@ -60,12 +66,6 @@ This project was tested on python 3.7
 * Glob - module that finds all paths that match a given pattern according to the rules used by the Unix shell.
 * Math - module that provides access to some popular mathematical functions and constants.
 * abc - module that helps design abstract entities.
-
-## System operation
-
-* Image search;  
-* Search by text query (Russian/English); 
-* Video search. 
 
 ## Some screenshots of Streamlit main page
 ![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/streamlit_1.png)
