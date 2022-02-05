@@ -79,7 +79,7 @@ For the analysis, the CIFAR-100 dataset was selected, which contains 100 classes
 
 To evaluate the models, we will solve the classification problem. The definition of an image class can be considered as a search for an image by a query that is equal to the class label.
 
-Precision, recall, accuracy, top-5 accuracy were analyzed. The ruClip model is better than RuCLIP-SB in all parameters, therefore, RUclip was chosen to solve the problem of image search by Russian-language queries.
+Precision, recall, accuracy, top-5 accuracy were analyzed. The RuCLIP model is better than RuCLIP-SB in all parameters, therefore, RuCLIP was chosen to solve the problem of image search by Russian-language queries.
 
 ![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/RuClipVSRuClipSB.png)
 
@@ -91,7 +91,7 @@ Precision, recall, accuracy, top-5 accuracy were analyzed. The ruClip model is b
 
 ### RuCLIP vs RuCLIP-ONNX
 
-The inference of RUclip and the optimized RUclip model via ONNX was investigated. Optimization gives a visible increase in speed.
+The inference of RuCLIP and the optimized RuCLIP model via ONNX was investigated. Optimization gives a visible increase in speed.
 
 ![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/Speed.png)
 
