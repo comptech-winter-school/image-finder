@@ -4,7 +4,7 @@ Image Finder is an implementation of the Image Finder project as part of the [Co
 
 ## About 
 
-The product goal is possibility to help users in the task of quickly finding the right images. This opportunity will be useful for people whose professional activities or hobbies are related to photo. 
+The product goal is possibility to help users to quickly finding the right images. This opportunity will be useful for people whose professional activities or hobbies are related to photo. 
 
 ## The target audience
 
