@@ -24,11 +24,13 @@ http://84.201.160.26:8503/
 
 ## Principle of operation  
 
-![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/Untitled%20Diagram.drawio1.drawio.png)
+![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/Untitled%20Diagram.drawio1.drawio-4.png)
 
-For example 
+For example, text request
 
 ![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/Untitled%20Diagram.drawio-2.png)
+
+![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/Untitled%20Diagram.drawio1.drawio-3.png)
 
 ## The target audience
 
@@ -53,7 +55,9 @@ This project was tested on python 3.7
 * Pandas — software library in Python for data processing and analysis. 
 * NumPy — software library in Python that adds support for large multidimensional arrays and matrices. 
 * Faiss — library of algorithms for finding nearest neighbors in linear space. 
-* 
+* Glob - module that finds all paths that match a given pattern according to the rules used by the Unix shell.
+* Math - module that provides access to some popular mathematical functions and constants.
+* abc - module that helps design abstract entities.
 
 ## System operation
 
