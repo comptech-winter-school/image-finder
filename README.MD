@@ -82,7 +82,7 @@ This project was tested on python 3.7
   * Maxim Mashtakov, 
   * Vladislav Kuznetsov, 
   * Dmitry Moskalev
-* Team lead: 
+* Team Lead: 
   * Dmitry Moskalev
 * Mentors:
   * Amir Uteuov, 
