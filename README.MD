@@ -59,6 +59,12 @@ This project was tested on python 3.7
 8. If you want to filter output results, you can use threshold slider
 9. The images will be print with sorting of cosine distance.
 
+## Models
+
+CLIP (Contrastive Language-Image Pre-Training) is a neural network trained on a variety of (image, text) pairs. It can be instructed in natural language to predict the most relevant text snippet, given an image, without directly optimizing for the task, similarly to the zero-shot capabilities of GPT-2 and 3.
+
+RuCLIP (Russian Contrastive Language–Image Pretraining) is a multimodal model for obtaining images and text similarities and rearranging captions and pictures. RuCLIP builds on a large body of work on zero-shot transfer, computer vision, natural language processing and multimodal learning.
+
 
 ## Libraries 
 
