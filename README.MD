@@ -8,7 +8,7 @@ The goal of this product is to possibly help users in the task of quickly findin
 
 ## Demonstration
 
-http://84.201.160.26:8503/
+[Demonstration site](http://84.201.160.26:8503/)
 
 ## Structure
 
