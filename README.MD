@@ -4,7 +4,11 @@ Image Finder is an implementation of the Image Finder project as part of the [Co
 
 ## About 
 
-The product goal is possibility to help users to quickly finding the right images. This opportunity will be useful for people whose professional activities or hobbies are related to photo. 
+The product goal is possibility to help users to quickly finding the right images. 
+
+#### Survey
+
+According to a [survey](https://forms.gle/HmXznGKsynYdRoZ78) conducted as part of CompTech2022, users typically extract images on their devices themselves. This opportunity will be useful for people whose professional activities or hobbies are related to photo. In addition, we learned that this product will be useful to absolutely any user.
 
 ## The target audience
 
@@ -65,15 +69,37 @@ This project was tested on python 3.7
 
 [RuCLIP](https://github.com/sberbank-ai/ru-clip) (Russian Contrastive Language–Image Pretraining) is a multimodal model for obtaining images and text similarities and rearranging captions and pictures. RuCLIP builds on a large body of work on zero-shot transfer, computer vision, natural language processing and multimodal learning.
 
+## ML experiments
+
+### ruClip vs ruClip-sb
+
+To solve the problem of image search by Russian-language queries, two models were considered: ruClip and ruClip-SB.
+
+For the analysis, the CIFAR-100 dataset was selected, which contains 100 classes of 600 images with a size of 32x32. There are 500 training images and 100 test images in each class. This set is well suited for comparing models, as it has a wide variety of classes.
+
+To evaluate the models, we will solve the classification problem. The definition of an image class can be considered as a search for an image by a query that is equal to the class label.
+
+Precision, recall, accuracy, top-5 accuracy were analyzed. The ruClip model is better than ruClip-SB in all parameters, therefore, RUclip was chosen to solve the problem of image search by Russian-language queries.
+
+![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/RuClipVSRuClipSB.png)
+
+![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/Pre.png)
+
+![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/Recall.png)
+
+![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/Acc.png)
+
+### ruClip vs ruClip-ONNX
+
+The inference of RUclip and the optimized RUclip model via ONNX was investigated. Optimization gives a visible increase in speed.
+
+![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/Speed.png)
 
 ## Libraries 
 
 * Pandas — software library in Python for data processing and analysis. 
 * NumPy — software library in Python that adds support for large multidimensional arrays and matrices. 
 * Faiss — library of algorithms for finding nearest neighbors in linear space. 
-* Glob - module that finds all paths that match a given pattern according to the rules used by the Unix shell.
-* Math - module that provides access to some popular mathematical functions and constants.
-* abc - module that helps design abstract entities.
 
 ## Some screenshots of main page
 ![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/streamlit_1.png)
