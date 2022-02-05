@@ -6,6 +6,10 @@ ImgFinder is an implementation of the Image Finder project as part of the [CompT
 
 The product goal is possibility to help users in the task of quickly finding the right images. This opportunity will be useful for people whose professional activities or hobbies are related to photo. 
 
+## The target audience
+
+This product is aimed at all users.
+
 ## Demonstration
 
 [Demonstration site](http://84.201.160.26:8503/)
@@ -32,11 +36,7 @@ For example
 ![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/Untitled%20Diagram.drawio-2.png)
 
 
-![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/Untitled%20Diagram.drawio1.drawio-3.png)
-
-## The target audience
-
-This product is aimed at all users. 
+![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/Untitled%20Diagram.drawio1.drawio-3.png) 
 
 ## Usage
 
