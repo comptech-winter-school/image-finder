@@ -11,13 +11,17 @@ from PIL import Image
 from typing import List
 from pathlib import Path
 
+from dummyindexer import DummyIndexer
+from embedder import EmbedderRuCLIP
+
 
 class SearchModel():
     def __init__(self, embedder, indexer):
         self.embedder = embedder
         self.indexer = indexer
+        self.indexed_imgs_path = [] # array with indexed embeddings
         self.images_dir = None
-        self.imgs_path = None
+        self.imgs_path = None       # array for temp embeddings storage
         self.features_path = None
 
     def load_imgs(self, path: str, prefix: str):
@@ -40,7 +44,7 @@ class SearchModel():
           os.mkdir(features_dir)
         
         if len(os.listdir(features_dir)) >= 2:
-          self.imgs_path = list(pd.read_csv(f"{self.features_path}/photo_ids.csv")['photo_id'])
+          self.indexed_imgs_path = list(pd.read_csv(f"{self.features_path}/photo_ids.csv")['photo_id'])
 
     def load_img_urls(self):
         """
@@ -49,19 +53,20 @@ class SearchModel():
         """
         pass
 
-    def save_embs(self, batch_size=512) -> None:
+    def add_photo_path(self, name):
+        return f'{self.images_dir}/{name}.png'
+
+    def save_embs(self) -> None:
         """
         Extracts image embeddings from embedder and adds them to indexer
         :param pil_imgs:
         :return:
         """
+        self.indexed_imgs_path.extend(self.imgs_path)
 
-        if len(os.listdir(self.features_path)) >= 2:
-          os.remove(str(self.features_path) + '/photo_ids.csv')
-          os.remove(str(self.features_path) + '/features.npy')
-          self.imgs_path = list(Path(self.images_dir).glob("*.*"))
-        
-        if not len(self.imgs_path) >= 512:
+        if(len(self.imgs_path) >= 512):
+          batch_size = 512
+        else:
           batch_size = len(self.imgs_path)
 
         # Compute how many batches are needed
@@ -86,7 +91,7 @@ class SearchModel():
               np.save(batch_features_path, batch_features)
 
               # Save the photo IDs to a CSV file
-              photo_ids = [photo_file for photo_file in batch_files]
+              photo_ids = [photo_file.name.split(".")[0] for photo_file in batch_files]
               photo_ids_data = pd.DataFrame(photo_ids, columns=['photo_id'])
               photo_ids_data.to_csv(batch_ids_path, index=False)
             except:
@@ -102,12 +107,13 @@ class SearchModel():
 
         # Load all the photo IDs
         photo_ids = pd.concat([pd.read_csv(ids_file) for ids_file in sorted(self.features_path.glob("*.csv"))])
+        photo_ids = photo_ids["photo_id"].apply(self.add_photo_path)
         photo_ids.to_csv(self.features_path / "photo_ids.csv", index=False)
         
         for file in glob.glob('{}/0*.*'.format(self.features_path)):
           os.remove(file)
         
-        self.indexer.load(str(self.features_path) + '/features.npy')
+        self.indexer.add(embs=features)    
     
     def get_k_imgs(self, emb: np.ndarray, k: int):
         """
@@ -117,4 +123,4 @@ class SearchModel():
         :return:
         """
         distances, indices = self.indexer.find(emb, k)
-        return distances, np.array(self.imgs_path)[indices]
+        return distances, np.array(self.indexed_imgs_path)[indices]
