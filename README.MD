@@ -50,7 +50,7 @@ For example
 
 ![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/Untitled%20Diagram.drawio1.drawio-3.png) 
 
-## Usage
+## Usage 
 
 This project was tested on python 3.7
 1. Clone repository `git clone https://github.com/comptech-winter-school/image-finder.git`
