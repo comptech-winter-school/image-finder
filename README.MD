@@ -24,11 +24,14 @@ http://84.201.160.26:8503/
 
 ## Principle of operation  
 
+By text query and image query can find relevant images.
+
 ![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/Untitled%20Diagram.drawio1.drawio-4.png)
 
-For example, text request
+For example
 
 ![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/Untitled%20Diagram.drawio-2.png)
+
 
 ![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/Untitled%20Diagram.drawio1.drawio-3.png)
 
