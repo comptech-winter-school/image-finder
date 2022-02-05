@@ -11,15 +11,16 @@ The product goal is possibility to help users in the task of quickly finding the
 [Demonstration site](http://84.201.160.26:8503/)
 
 ## Structure
-
+* 	`colabs` — directory with research experiments in colab notebooks;  
+*  `test` – directory with tests;
+* 	`assets` — directory with images;
 * 	`main.py` - main file that includes all classes and functions for user-friendly web-service
 * 	`faissindexer.py` — contains FAISS indexer that stores image embeddings and searches nearest neighbors for given text embedding;
 * 	`dummyindexer.py` — contains simple indexer that stores image embbeddings and searches nearest neighbors for given text embedding by one-vs-all comparison;
 * 	`embedder.py` — contains wrapper-classes for different CLIP models;
 *  `searchmodel.py` — classes that connect indexers and CLIP embedders, load and stores indexed images and their paths;
-* 	`colabs` — directory with research experiments in colab notebooks;  
-*  `test` – directory with tests;
-* 	`assets` — directory with images;
+*  `CLIP_attention_maps.py` — attention maps for CLIP model;
+*  `ruCLIP_attention_maps.py` — attention maps for ruCLIP model;
 *  `requirements.txt` — list of dependencies 
 
 ## Principle of operation  
