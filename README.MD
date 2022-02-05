@@ -34,7 +34,7 @@ This product is aimed at all users.
 * 	`embedder.py` — contains wrapper-classes for different CLIP models;
 *  `searchmodel.py` — classes that connect indexers and CLIP embedders, load and stores indexed images and their paths;
 *  `CLIP_attention_maps.py` — attention maps for CLIP model;
-*  `ruCLIP_attention_maps.py` — attention maps for ruCLIP model;
+*  `ruCLIP_attention_maps.py` — attention maps for RuCLIP model;
 *  `requirements.txt` — list of dependencies 
 
 ## Principle of operation  
