@@ -71,15 +71,15 @@ This project was tested on python 3.7
 
 ## ML experiments
 
-### ruClip vs ruClip-sb
+### RuCLIP vs RuCLIP-SB
 
-To solve the problem of image search by Russian-language queries, two models were considered: ruClip and ruClip-SB.
+To solve the problem of image search by Russian-language queries, two models were considered: RuCLIP and RuCLIP-SB.
 
 For the analysis, the CIFAR-100 dataset was selected, which contains 100 classes of 600 images with a size of 32x32. There are 500 training images and 100 test images in each class. This set is well suited for comparing models, as it has a wide variety of classes.
 
 To evaluate the models, we will solve the classification problem. The definition of an image class can be considered as a search for an image by a query that is equal to the class label.
 
-Precision, recall, accuracy, top-5 accuracy were analyzed. The ruClip model is better than ruClip-SB in all parameters, therefore, RUclip was chosen to solve the problem of image search by Russian-language queries.
+Precision, recall, accuracy, top-5 accuracy were analyzed. The ruClip model is better than RuCLIP-SB in all parameters, therefore, RUclip was chosen to solve the problem of image search by Russian-language queries.
 
 ![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/RuClipVSRuClipSB.png)
 
@@ -89,7 +89,7 @@ Precision, recall, accuracy, top-5 accuracy were analyzed. The ruClip model is b
 
 ![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/Acc.png)
 
-### ruClip vs ruClip-ONNX
+### RuCLIP vs RuCLIP-ONNX
 
 The inference of RUclip and the optimized RUclip model via ONNX was investigated. Optimization gives a visible increase in speed.
 
