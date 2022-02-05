@@ -5,7 +5,7 @@ Created on 2022 Jan 31 18:38
 """
 import numpy as np
 
-from faiss import Indexer
+from faissindexer import Indexer
 
 class DummyIndexer(Indexer):
     def __init__(self):

@@ -1,7 +1,7 @@
 import unittest
 import numpy as np
 
-from faiss import FaissIndexer
+from faissindexer import FaissIndexer
 
 class TestFaissIndexer(unittest.TestCase):
   def setUp(self):

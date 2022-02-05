@@ -1,6 +1,6 @@
 
 import pickle
-import faiss
+import faissindexer
 import abc
 
 
