@@ -27,7 +27,26 @@ st.set_page_config(page_title="Image Finder",
 
 with st.expander("About"):
     st.text("""
-        This is project explanation
+        Image Finder project.
+        
+        FAQ:
+        1. Select preferred indexer
+        2. Select text query or image method for processing
+        3. Select output image count
+        4. If you want to filter output results, you can use threshold slider
+        5. The images will be print with sorting of cosine distance
+        
+        Models: ruCLIP / CLIP
+        
+        Indexers:
+        1. Variant1 - film indexer with N images with ... format
+        2. Variant2 - other indexer with M images with ... format
+        
+        Team:
+        Developers: Anna Glushkova, Kirill Keller, Alexandr Minin, Maxim Mashtakov,
+        Vladislav Kuznetsov, Dmitry Moskalev, Vasiliy Dronov, Vadim Kozlov
+        Team Lead: Dmitry Moskalev
+        Mentors: Amir Uteuov, Vladimir Kilyazov      
     """)
 
 @st.cache(suppress_st_warning=True, allow_output_mutation=True)
@@ -77,7 +96,7 @@ indexer = st.sidebar.selectbox(
 
 dict_indexer = {'Variant1':'trip', 'Variant2':'film'}
 
-st.title('Project')
+st.title('Image Finder project')
 st.caption(f"Current indexer: {indexer}")
 option = st.selectbox(
     'What would you like to do?',
