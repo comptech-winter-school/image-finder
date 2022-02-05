@@ -50,7 +50,7 @@ This project was tested on python 3.7
 6. Select text query or image method for processing
 7. Select output image count
 8. If you want to filter output results, you can use threshold slider
-9. The images will be print with sorting of cosine distance
+9. The images will be print with sorting of cosine distance.
 
 
 ## Libraries 
