@@ -38,9 +38,11 @@ This product is aimed at all users.
 ![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/Untitled%20Diagram.drawio1.drawio-4.png)
 
 For example
+* Text query
 
 ![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/Untitled%20Diagram.drawio-2.png)
 
+* Image
 
 ![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/Untitled%20Diagram.drawio1.drawio-3.png) 
 
