@@ -1,6 +1,6 @@
 # Image Finder CompTech2022
 
-ImgFinder is an implementation of the Image Finder project as part of the [CompTech2022 winter school](https://comptechschool.com/). 
+Image Finder is an implementation of the Image Finder project as part of the [CompTech2022 winter school](https://comptechschool.com/). 
 
 ## About 
 
