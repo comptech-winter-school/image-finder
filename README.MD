@@ -84,7 +84,6 @@ This project was tested on python 3.7
 * Developers: 
   * Anna Glushkova, 
   * Vasiliy Dronov, 
-  * Vadim Kozlov, 
   * Kirill Keller, 
   * Alexandr Minin, 
   * Maxim Mashtakov, 
