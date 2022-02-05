@@ -4,7 +4,7 @@ ImgFinder is an implementation of the Image Finder project as part of the [CompT
 
 ## About 
 
-The goal of this product is to possibly help users in the task of quickly finding the right images. This opportunity will be useful for people whose professional activities or hobbies are related to photo. 
+The product goal is possibility to help users in the task of quickly finding the right images. This opportunity will be useful for people whose professional activities or hobbies are related to photo. 
 
 ## Demonstration
 
@@ -12,7 +12,7 @@ The goal of this product is to possibly help users in the task of quickly findin
 
 ## Structure
 
-<!--main.py - main file -->
+* 	`main.py` - main file that includes all classes and functions for user-friendly web-service
 * 	`faissindexer.py` — contains FAISS indexer that stores image embeddings and searches nearest neighbors for given text embedding;
 * 	`dummyindexer.py` — contains simple indexer that stores image embbeddings and searches nearest neighbors for given text embedding by one-vs-all comparison;
 * 	`embedder.py` — contains wrapper-classes for different CLIP models;
