@@ -39,8 +39,8 @@ with st.expander("About"):
         Models: ruCLIP / CLIP
         
         Indexers:
-        1. Variant1 - film indexer with N images with ... format
-        2. Variant2 - other indexer with M images with ... format
+        1. Variant1 - film indexer with N images and ... format
+        2. Variant2 - other indexer with M images and ... format
         
         Team:
         Developers: Anna Glushkova, Kirill Keller, Alexandr Minin, Maxim Mashtakov,
