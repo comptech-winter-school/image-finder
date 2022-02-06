@@ -106,6 +106,18 @@ The inference of RuCLIP and the optimized RuCLIP model via ONNX was investigated
 
 ![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/Speed.png)
 
+### Attention maps
+
+Processing results for queries in the singular and plural are almost the same
+
+![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/1.png)
+
+![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/2.png)
+
+Processing results depending on the number of iterations
+
+![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/3.png)
+
 ## Libraries 
 
 * [pandas](https://github.com/pandas-dev/pandas) — software library in Python for data processing and analysis. 
@@ -114,10 +126,6 @@ The inference of RuCLIP and the optimized RuCLIP model via ONNX was investigated
 * [nmslib](https://github.com/nmslib/nmslib) — cross-platform similarity search library.
 * [streamlit](https://github.com/streamlit/streamlit) — open-source app framework, the fastest way to build and share data apps.
 * [torch](https://github.com/pytorch/pytorch) — open source deep learning framework.
-
-## Some screenshots of main page
-![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/streamlit_1.png)
-![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/streamlit_2.png)
 
 ## Team
 
