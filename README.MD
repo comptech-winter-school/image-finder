@@ -110,7 +110,8 @@ The inference of RuCLIP and the optimized RuCLIP model via ONNX was investigated
 
 * Pandas — software library in Python for data processing and analysis. 
 * NumPy — software library in Python that adds support for large multidimensional arrays and matrices. 
-* Faiss — library of algorithms for finding nearest neighbors in linear space. 
+* Faiss — library of algorithms for finding nearest neighbors in linear space. [](https://github.com/facebookresearch/faiss)
+* nmslib — cross-platform similarity search library. [](https://github.com/nmslib/nmslib)
 
 ## Some screenshots of main page
 ![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/streamlit_1.png)
