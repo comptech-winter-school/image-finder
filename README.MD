@@ -127,6 +127,10 @@ Processing results depending on the number of iterations
 * [streamlit](https://github.com/streamlit/streamlit) — open-source app framework, the fastest way to build and share data apps.
 * [torch](https://github.com/pytorch/pytorch) — open source deep learning framework.
 
+## Datasets:
+* Cifar100; URL: https://www.cs.toronto.edu/%7Ekriz/cifar.html
+* Unsplush; URL: https://unsplash.com/data
+
 ## Team
 
 * Developers: 
