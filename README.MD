@@ -30,9 +30,10 @@ This product is aimed at all users.
 * 	`colabs` — directory with research experiments in colab notebooks;  
 *  `test` – directory with tests;
 * 	`assets` — directory with images;
-* 	`main.py` - main file that includes all classes and functions for user-friendly web-service
+* 	`main.py` — main file that includes all classes and functions for user-friendly web-service
 * 	`faissindexer.py` — contains FAISS indexer that stores image embeddings and searches nearest neighbors for given text embedding;
 * 	`dummyindexer.py` — contains simple indexer that stores image embbeddings and searches nearest neighbors for given text embedding by one-vs-all comparison;
+* 	`hnsw_indexer.py` — contains HNSW indexer that stores image embbeddings and searches nearest neighbors for given text embedding by approximate nearest neighbor search;
 * 	`embedder.py` — contains wrapper-classes for different CLIP models;
 *  `searchmodel.py` — classes that connect indexers and CLIP embedders, load and store indexed images and their paths;
 *  `CLIP_attention_maps.py` — attention maps for CLIP model;
