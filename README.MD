@@ -2,6 +2,8 @@
 
 Image Finder is an implementation of the Image Finder project as part of the [CompTech2022 winter school](https://comptechschool.com/). 
 
+[](https://github.com/comptech-winter-school/image-finder/blob/main/assets/app_gif.gif)
+
 ## About 
 
 The product goal is possibility to help users to quickly finding the right images. 
