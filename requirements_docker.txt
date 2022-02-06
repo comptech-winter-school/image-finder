@@ -1,0 +1,11 @@
+streamlit
+pandas
+pillow
+pathlib
+matplotlib
+numpy
+faiss
+ruclip==0.0.1
+nmslib
+clip-by-openai
+googletrans==3.1.0a0
