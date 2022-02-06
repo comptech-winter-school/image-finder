@@ -44,8 +44,10 @@ with st.expander("About"):
         Models: ruCLIP / CLIP
         
         Indexers:
-        1. Variant1 - film indexer with N images and ... format
-        2. Variant2 - other indexer with M images and ... format
+        1. Tour - curator's images from travel
+        2. Video Trailer - Video trailer a first film about Harry Potter
+        3. Professional photos - almost two million different images from the photographer from the site Unsplash
+        4. Parking - a video where there is a fairly dense traffic of vehicles
         
         Team:
         Developers: Anna Glushkova, Kirill Keller, Alexandr Minin, Maxim Mashtakov,
@@ -108,8 +110,6 @@ def function_images(input_format):
 def get_image_url(photo_id):
   photo_image_url = f"https://unsplash.com/photos/{photo_id}/download?w=320"
   response = requests.get(photo_image_url)
-  #st.write(photo_id)
-  #st.write(response.status_code)
   image = Image.open(BytesIO(response.content))
   return image
 
@@ -170,11 +170,8 @@ if st.button('Start processing'):
         if indexer_name == 'unsplash' and use_hnsw:
             distances_hnsw, indexes_hnsw = hnsw_indexer.find(query, values)
             distances_hnsw = np.array(distances_hnsw)
-            #st.write(indexes_hnsw)
-            #print(indexes_hnsw)
             l_query = []
             for l_item in indexes_hnsw:
-                #print(general_model.imgs_path[l_item])
                 l_query.append(general_model.imgs_path[l_item])
             indexes_hnsw = np.array(l_query)
             input_data = (distances_hnsw, indexes_hnsw)
@@ -204,12 +201,8 @@ if st.button('Start processing'):
         if indexer_name == 'unsplash' and use_hnsw:
             distances_hnsw, indexes_hnsw = hnsw_indexer.find(query, values)
             distances_hnsw = np.array(distances_hnsw)
-            #st.write(indexes_hnsw)
-            #print(indexes_hnsw)
             l_query = []
             for l_item in indexes_hnsw:
-                #print(l_query)
-                #print(general_model.imgs_path[l_item])
                 l_query.append(clip_model.imgs_path[l_item])
             indexes_hnsw = np.array(l_query)
             input_data = (distances_hnsw, indexes_hnsw)
