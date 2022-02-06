@@ -110,9 +110,9 @@ The inference of RuCLIP and the optimized RuCLIP model via ONNX was investigated
 
 Processing results for queries in the singular and plural are almost the same
 
-![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/1.png)
+![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/11.png)
 
-![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/2.png)
+![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/22.png)
 
 Processing results depending on the number of iterations
 
