@@ -70,6 +70,7 @@ For running in Docker run these commands:
 * `docker build -t streamlitapp:latest`
 * `docker run -p 8501:8501 streamlitapp:latest`
 
+App will be deployed at http://localhost:8501/
 ## Models
 
 [CLIP](https://github.com/openai/CLIP) (Contrastive Language-Image Pre-Training) is a neural network trained on a variety of (image, text) pairs. It can be instructed in natural language to predict the most relevant text snippet, given an image, without directly optimizing for the task, similarly to the zero-shot capabilities of GPT-2 and 3.
