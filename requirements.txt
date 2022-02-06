@@ -5,7 +5,8 @@ pathlib
 matplotlib
 numpy
 faiss
-clip
+clip-by-openai
+googletrans==3.1.0a0
 ruclip==0.0.1
 --find-links https://download.pytorch.org/whl/torch_stable.html
 torch==1.10.2+cpu
