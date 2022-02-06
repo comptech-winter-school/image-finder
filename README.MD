@@ -112,8 +112,8 @@ The inference of RuCLIP and the optimized RuCLIP model via ONNX was investigated
 * [numpy](https://github.com/numpy/numpy) — software library in Python that adds support for large multidimensional arrays and matrices. 
 * [faiss](https://github.com/facebookresearch/faiss) — library of algorithms for finding nearest neighbors in linear space.
 * [nmslib](https://github.com/nmslib/nmslib) — cross-platform similarity search library.
-* [streamlit](https://github.com/streamlit/streamlit) — open-source app framework.
-* [torch](https://github.com/pytorch/pytorch) — open source machine learning framework.
+* [streamlit](https://github.com/streamlit/streamlit) — open-source app framework, the fastest way to build and share data apps.
+* [torch](https://github.com/pytorch/pytorch) — open source deep learning framework.
 
 ## Some screenshots of main page
 ![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/streamlit_1.png)
