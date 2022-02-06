@@ -42,7 +42,7 @@ This product is aimed at all users.
 
 ## Principle of operation  
 
-![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/Untitled%20Diagram.drawio1.drawio-4.png)
+![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/Untitled%20Diagram.drawio1.drawio-4-2.png)
 
 For example
 * Text query
