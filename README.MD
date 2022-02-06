@@ -101,6 +101,13 @@ The inference of RuCLIP and the optimized RuCLIP model via ONNX was investigated
 * NumPy — software library in Python that adds support for large multidimensional arrays and matrices. 
 * Faiss — library of algorithms for finding nearest neighbors in linear space. 
 
+## Docker Build
+
+For running in Docker run these commands:
+
+* docker build -t streamlitapp:latest 
+* docker run -p 8501:8501 streamlitapp:latest
+
 ## Some screenshots of main page
 ![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/streamlit_1.png)
 ![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/streamlit_2.png)
