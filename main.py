@@ -14,10 +14,15 @@ import glob
 import math
 from pathlib import Path
 import regex as re
+import requests
+from io import BytesIO
+import time
+from googletrans import Translator
 
 from searchmodel import SearchModel
 from embedder import EmbedderRuCLIP, EmbedderCLIP
 from dummyindexer import DummyIndexer
+from hnsw_indexer import HnmsIndexer
 
 st.set_page_config(page_title="Image Finder",
                    page_icon='⚙',
@@ -44,10 +49,18 @@ with st.expander("About"):
         
         Team:
         Developers: Anna Glushkova, Kirill Keller, Alexandr Minin, Maxim Mashtakov,
-        Vladislav Kuznetsov, Dmitry Moskalev, Vasiliy Dronov, Vadim Kozlov
+        Vladislav Kuznetsov, Dmitry Moskalev, Vasiliy Dronov
         Team Lead: Dmitry Moskalev
         Mentors: Amir Uteuov, Vladimir Kilyazov      
     """)
+
+@st.cache(suppress_st_warning=True, allow_output_mutation=True)
+def load_unsplash_indexer(pth):
+    hnsw_indexer = HnmsIndexer()
+    hnsw_indexer.load(pth)
+    return hnsw_indexer
+
+hnsw_indexer = load_unsplash_indexer('/mnt/storage/unsplash_nms.index')
 
 @st.cache(suppress_st_warning=True, allow_output_mutation=True)
 def load_model():
@@ -80,57 +93,99 @@ def function_images(input_format):
     else:
         for _, i in enumerate(input_format.items(), 1):
             with col1:
-                if i[1] >= threshold / 100:
-                    image = Image.open(i[0])
-                    st.image(image, caption=f"{i[0].split('/')[len(i[0].split('/'))-1]}, {i[1]}")
+                try:
+                    if i[1] >= threshold / 100:
+                        image = Image.open(i[0]) if indexer_name != 'unsplash' else get_image_url(i[0])
+                        caption = f"{i[0].split('/')[len(i[0].split('/'))-1]}, {i[1]}" if indexer_name != 'unsplash' else f"{i[0]}, {i[1]}"
+                        st.image(image, caption=caption)
+                except:
+                    pass
             with col2:
                 if _ == 1:
                     st.write("Output cosine distance")
                     st.dataframe(df.style.text_gradient(axis=0, cmap='Spectral'))
 
+def get_image_url(photo_id):
+  photo_image_url = f"https://unsplash.com/photos/{photo_id}/download?w=320"
+  response = requests.get(photo_image_url)
+  #st.write(photo_id)
+  #st.write(response.status_code)
+  image = Image.open(BytesIO(response.content))
+  return image
+
 st.image(Image.open('assets/logo.png'))
-indexer = st.sidebar.selectbox(
-    "Select indexer",
-    ("Variant1", "Variant2")
+
+dict_indexer = {'Tour':'trip', 'Video Trailer':'trailer', 'Professional photos':'unsplash', 'Parking': 'traffic'}
+
+#st.title('Image Finder project')
+indexer = st.selectbox(
+    "Select usecase",
+    ("Tour", "Video Trailer", "Professional photos", "Parking")
 )
-
-dict_indexer = {'Variant1':'trip', 'Variant2':'film'}
-
-st.title('Image Finder project')
-st.caption(f"Current indexer: {indexer}")
+st.caption(f"Current usecase: {indexer}")
 option = st.selectbox(
     'What would you like to do?',
      ('Text query', 'Image')
 )
 #Text query
 if option == 'Text query':
-    text = st.text_input('Input text query', '')
+    text = st.text_input('Input text query', value = 'Sunset')
 else:
 #Image
     file = st.file_uploader("Choose image", type=['jpeg', 'jpg', 'png'], accept_multiple_files=False)
 
 values = st.slider('Select a range of sample images', 1, 10, 5)
-threshold = st.slider('Select a threshold for output images, %', 1, 100, 25)
+threshold = st.slider('Select a threshold for output images, %', 1, 100, 10)
+
+if dict_indexer.get(indexer) == 'unsplash':
+    use_hnsw = st.checkbox('❗ Use fast indexer 😎', value = True)
+
+translator = Translator()
 
 #Processing
-if st.button('Process'):
+if st.button('Start processing'):
     indexer_name = dict_indexer.get(indexer)
     if option == 'Text query' and text:
         st.write(f"Output images for text query: {text}")
-        general_model = None
+        
+        model_prefix = 'RuCLIP'
+        general_model = ruclip_model
         
         if re.findall(r'[а-яА-Я0-9]', text):
+            model_prefix = 'RuCLIP'
             general_model = ruclip_model
-            general_model.load_imgs(f"/home/comptech/indexes/{indexer_name}/images",'RuCLIP')
-        elif re.findall(r'[a-zA-Z0-9]', text):
+        if indexer_name == 'unsplash':
+            text = translator.translate(text, src = 'ru', dest='en').text
             general_model = clip_model
-            general_model.load_imgs(f"/home/comptech/indexes/{indexer_name}/images",'CLIP')
+        elif re.findall(r'[a-zA-Z0-9]', text):
+            model_prefix = 'CLIP'
+            general_model = clip_model
         else:
             st.info(f"Error in query: {text}")
+        model_prefix = model_prefix if indexer_name != 'unsplash' else 'others'
+        general_model.load_imgs(f"/home/comptech/indexes/{indexer_name}/images", model_prefix)
         general_model.indexer.load(str(general_model.features_path) + '/features.npy')
+        start_time = time.time() * 1000
         query = general_model.embedder.encode_text(text)
-        input_data = general_model.get_k_imgs(query, values)
+        if indexer_name == 'unsplash' and use_hnsw:
+            distances_hnsw, indexes_hnsw = hnsw_indexer.find(query, values)
+            distances_hnsw = np.array(distances_hnsw)
+            #st.write(indexes_hnsw)
+            #print(indexes_hnsw)
+            l_query = []
+            for l_item in indexes_hnsw:
+                #print(general_model.imgs_path[l_item])
+                l_query.append(general_model.imgs_path[l_item])
+            indexes_hnsw = np.array(l_query)
+            input_data = (distances_hnsw, indexes_hnsw)
+        else:
+            try:
+                input_data = general_model.get_k_imgs(query, values)
+            except:
+                input_data = general_model.get_k_imgs(query, values)
+        end_time = time.time()*1000
         input_format = {}
+        st.write("Search time in ms: " + str(round((end_time-start_time),2)))
         
         for i,j in zip(input_data[0], input_data[1]):
             input_format.update({str(j):i})
@@ -138,14 +193,33 @@ if st.button('Process'):
         function_images(input_format)
         
     elif option == 'Image' and file is not None:
-        ruclip_model.load_imgs(f"/home/comptech/indexes/{indexer_name}/images",'RuCLIP')
-        ruclip_model.indexer.load(str(ruclip_model.features_path) + '/features.npy')
+        model_prefix = 'CLIP' if indexer_name != 'unsplash' else 'others'
+        clip_model.load_imgs(f"/home/comptech/indexes/{indexer_name}/images", model_prefix)
+        clip_model.indexer.load(str(clip_model.features_path) + '/features.npy')
         image = Image.open(file)
-        query = ruclip_model.embedder.encode_imgs([image])
+        start_time = time.time() * 1000
+        query = clip_model.embedder.encode_imgs([image])
         st.image(image, caption=file.name)
         st.write(f"Output images for current input image: {file.name}")
-        
-        input_data = ruclip_model.get_k_imgs(query, values)
+        if indexer_name == 'unsplash' and use_hnsw:
+            distances_hnsw, indexes_hnsw = hnsw_indexer.find(query, values)
+            distances_hnsw = np.array(distances_hnsw)
+            #st.write(indexes_hnsw)
+            #print(indexes_hnsw)
+            l_query = []
+            for l_item in indexes_hnsw:
+                #print(l_query)
+                #print(general_model.imgs_path[l_item])
+                l_query.append(clip_model.imgs_path[l_item])
+            indexes_hnsw = np.array(l_query)
+            input_data = (distances_hnsw, indexes_hnsw)
+        else:
+            try:
+                input_data = clip_model.get_k_imgs(query, values)
+            except:
+                input_data = clip_model.get_k_imgs(query, values)
+        end_time = time.time() * 1000
+        st.write("Search time in ms: " + str(round((end_time-start_time), 2)))
         input_format = {}
         
         for i,j in zip(input_data[0], input_data[1]):
