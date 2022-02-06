@@ -154,14 +154,16 @@ if st.button('Start processing'):
         if re.findall(r'[а-яА-Я0-9]', text):
             model_prefix = 'RuCLIP'
             general_model = ruclip_model
-        if indexer_name == 'unsplash':
-            text = translator.translate(text, src = 'ru', dest='en').text
-            general_model = clip_model
         elif re.findall(r'[a-zA-Z0-9]', text):
             model_prefix = 'CLIP'
             general_model = clip_model
         else:
             st.info(f"Error in query: {text}")
+
+        if indexer_name == 'unsplash' and model_prefix == 'RuCLIP':
+            text = translator.translate(text, src = 'ru', dest='en').text
+            general_model = clip_model
+        
         model_prefix = model_prefix if indexer_name != 'unsplash' else 'others'
         general_model.load_imgs(f"/home/comptech/indexes/{indexer_name}/images", model_prefix)
         general_model.indexer.load(str(general_model.features_path) + '/features.npy')
