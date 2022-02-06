@@ -63,6 +63,13 @@ This project was tested on python 3.7
 8. If you want to filter output results, you can use threshold slider
 9. The images will be print with sorting of cosine distance.
 
+## Docker Build
+
+For running in Docker run these commands:
+
+* `docker build -t streamlitapp:latest`
+* `docker run -p 8501:8501 streamlitapp:latest`
+
 ## Models
 
 [CLIP](https://github.com/openai/CLIP) (Contrastive Language-Image Pre-Training) is a neural network trained on a variety of (image, text) pairs. It can be instructed in natural language to predict the most relevant text snippet, given an image, without directly optimizing for the task, similarly to the zero-shot capabilities of GPT-2 and 3.
@@ -100,13 +107,6 @@ The inference of RuCLIP and the optimized RuCLIP model via ONNX was investigated
 * Pandas — software library in Python for data processing and analysis. 
 * NumPy — software library in Python that adds support for large multidimensional arrays and matrices. 
 * Faiss — library of algorithms for finding nearest neighbors in linear space. 
-
-## Docker Build
-
-For running in Docker run these commands:
-
-* docker build -t streamlitapp:latest 
-* docker run -p 8501:8501 streamlitapp:latest
 
 ## Some screenshots of main page
 ![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/streamlit_1.png)
