@@ -129,7 +129,7 @@ Processing results depending on the number of iterations
 
 ## Datasets:
 * Cifar100; URL: https://www.cs.toronto.edu/%7Ekriz/cifar.html
-* Unsplush; URL: https://unsplash.com/data
+* Unsplash; URL: https://unsplash.com/data
 
 ## Team
 
