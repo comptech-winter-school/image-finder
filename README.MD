@@ -16,10 +16,6 @@ According to a [survey](https://forms.gle/HmXznGKsynYdRoZ78) conducted as part o
 
 This product is aimed at all users.
 
-## Demonstration
-
-[Demonstration site](http://84.201.160.26:8503/)
-
 ## System operation
 
 * Image search;  
