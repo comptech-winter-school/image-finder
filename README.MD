@@ -2,7 +2,7 @@
 
 Image Finder is an implementation of the Image Finder project as part of the [CompTech2022 winter school](https://comptechschool.com/).
 
-Let's try fast search by text or image over 2 millions Professional photo in [Demo app](http://81.177.6.64:8505).
+You can try fast search by text or image over 2 millions Professional photo in [Demo app](http://81.177.6.64:8505).
 
 ![](https://github.com/comptech-winter-school/image-finder/blob/main/assets/app_gif.gif)
 
